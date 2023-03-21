@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style lang="scss" ref="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss" scoped>
 @import "../../assets/styles/global";
 
 .setting-wrapper {

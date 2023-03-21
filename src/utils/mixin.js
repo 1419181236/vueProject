@@ -1,6 +1,6 @@
 import { mapActions, mapGetters } from 'vuex'
-import { themeList, addCss, removeAllCss } from '@/utils/book'
-import { saveLocation } from '@/utils/localStorage'
+import { themeList, addCss, removeAllCss, getReadTimeByMinute } from '@/utils/book'
+import { getBookmark, saveLocation } from '@/utils/localStorage'
 
 export const ebookMixin = {
   computed: {
@@ -52,7 +52,6 @@ export const ebookMixin = {
       'setSpeakingIconBottom']),
     initGlobaStyle() {
       removeAllCss()
-      // removeCss()
       switch (this.defaultTheme) {
         case 'Default' :
           addCss(`${process.env.VUE_APP_RES_URL}/theme/theme_default.css`)
@@ -73,11 +72,24 @@ export const ebookMixin = {
     },
     refreshLocation() {
       const currentLocation = this.currentBook.rendition.currentLocation()
-      const startCfi = currentLocation.start.cfi
-      const progress = this.currentBook.locations.percentageFromCfi(startCfi)
-      this.setProgress(Math.floor(progress * 100))
-      this.setSection(currentLocation.start.index)
-      saveLocation(this.fileName, startCfi)
+      if (currentLocation && currentLocation.start) {
+        const startCfi = currentLocation.start.cfi
+        const progress = this.currentBook.locations.percentageFromCfi(startCfi)
+        this.setProgress(Math.floor(progress * 100))
+        this.setSection(currentLocation.start.index)
+        saveLocation(this.fileName, startCfi)
+        const bookmark = getBookmark(this.fileName)
+        console.log(bookmark)
+        if (bookmark) {
+          if (bookmark.some(item => item.cfi === startCfi)) {
+            this.setIsBookmark(true)
+          } else {
+            this.setIsBookmark(false)
+          }
+        } else {
+          this.setIsBookmark(false)
+        }
+      }
     },
     display(target, cb) {
       if (target) {
@@ -91,6 +103,14 @@ export const ebookMixin = {
           if (cb) { cb() }
         })
       }
+    },
+    hideTitleAndMenu() {
+      this.setMenuVisible(false)
+      this.setSettingVisible(-1)
+      this.setFontFamilyVisible(false)
+    },
+    getReadTimeText() {
+      return this.$t('book.haveRead').replace('$1', getReadTimeByMinute(this.fileName))
     }
   }
 }
