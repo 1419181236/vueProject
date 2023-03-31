@@ -55,7 +55,7 @@ $text-tiny-max-height: px2rem(12);
 }
 .sub-title {
   line-height: $text-small-lh;
-  font-size: $text-small;
+  font-size: px2rem(12);
   max-height: $text-small-max-height;
   color: #666;
   @include ellipsis2(1);

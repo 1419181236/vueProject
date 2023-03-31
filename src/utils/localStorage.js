@@ -10,6 +10,14 @@ export function setLocalStorage(key, value, expire = 30 * 24 * 3600) {
   return localStorage.set(key, value, { exp: expire })
 }
 
+export function getBookShelf() {
+  return getLocalStorage('shelf')
+}
+
+export function saveBookShelf(shelf) {
+  return setLocalStorage('shelf', shelf)
+}
+
 export function removeLocalStorage(key) {
   return localStorage.delete(key)
 }

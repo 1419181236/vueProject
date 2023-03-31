@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="text-wrapper">
-          <span class="progress-section-text">{{ getSectionName }}</span>
+          <span class="progress-section-text">{{ getSectionName() }}</span>
           <span>({{bookAvailable ? progress + '%' : '加载中...'}})</span>
         </div>
       </div>
@@ -37,18 +37,6 @@ import { ebookMixin } from '@/utils/mixin'
 
 export default {
   mixins: [ebookMixin],
-  computed: {
-    // eslint-disable-next-line vue/return-in-computed-property
-    getSectionName () {
-      // if (this.bookAvailable) {
-      //   const sectionInfo = this.currentBook.section(this.section)
-      //   if (sectionInfo && sectionInfo.href && this.currentBook && this.currentBook.navigation) {
-      //     return this.currentBook.navigation.get(sectionInfo.href).label
-      //   }
-      // }
-      return this.section ? this.navigation[this.section].label : ''
-    }
-  },
   methods: {
     onProgressChange(progress) {
       this.setProgress(progress).then(() => {

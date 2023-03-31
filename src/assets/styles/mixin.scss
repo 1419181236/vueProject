@@ -1,3 +1,5 @@
+$animationTime: .2s;
+$animationType: linear;
 $ratio: 375 / 10;
 
 @function px2rem($px) {
@@ -107,7 +109,7 @@ $ratio: 375 / 10;
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
-  overflow-wrap: break-word;
+  //overflow-wrap: break-word;
 }
 
 @mixin shelfImgHeight {
@@ -203,4 +205,13 @@ $homeAnimationTime: .5s;
 
 .opacity-slide-up-enter-active, .opacity-slide-up-leave-active {
   transition: all $homeAnimationTime linear;
+}
+.icon {
+  color: #666;
+  font-size: px2rem(16);
+}
+.title {
+  color: #666;
+  font-size: px2rem(16);
+  font-weight: bold;
 }

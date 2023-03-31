@@ -1,9 +1,11 @@
 <template>
   <div class="ebook" ref="ebook">
+    <ebook-header></ebook-header>
     <ebook-title></ebook-title>
     <ebook-reader></ebook-reader>
     <ebook-menu></ebook-menu>
     <ebook-bookmark></ebook-bookmark>
+    <ebook-footer></ebook-footer>
   </div>
 </template>
 
@@ -12,6 +14,8 @@ import EbookReader from '@/components/ebook/EbookReader.vue'
 import EbookMenu from '@/components/ebook/EbookMenu.vue'
 import EbookTitle from '@/components/ebook/EbookTitle.vue'
 import EbookBookmark from '@/components/ebook/EbookBookmark.vue'
+import EbookHeader from '@/components/ebook/EbookHeader.vue'
+import EbookFooter from '@/components/ebook/EbookFooter.vue'
 import { getReadTime, saveReadTime } from '@/utils/localStorage'
 import { ebookMixin } from '@/utils/mixin'
 
@@ -21,7 +25,9 @@ export default {
     EbookMenu,
     EbookReader,
     EbookTitle,
-    EbookBookmark
+    EbookBookmark,
+    EbookHeader,
+    EbookFooter
   },
   watch: {
     offsetY(v) {
