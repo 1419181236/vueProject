@@ -53,7 +53,7 @@ export default {
       } else {
         if (this.data.type === 1) {
           this.showBookDetail(this.data)
-          //console.log(this.data)
+          // console.log(this.data)
           // eslint-disable-next-line no-empty
         } else if (this.data.type === 2) {
           this.$router.push({

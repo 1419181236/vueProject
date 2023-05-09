@@ -82,6 +82,8 @@ export const storeHomeMixin = {
       'setFlapCardVisible'
     ]),
     showBookDetail(book) {
+      // this.stopAnimation()
+      this.setFlapCardVisible(false)
       gotoBookDetail(this, book)
     }
   }
@@ -89,7 +91,8 @@ export const storeHomeMixin = {
 
 export const ebookMixin = {
   computed: {
-    ...mapGetters(['fileName',
+    ...mapGetters([
+      'fileName',
       'menuVisible',
     'settingVisible',
     'defaultFontSize',
@@ -164,7 +167,7 @@ export const ebookMixin = {
         this.setSection(currentLocation.start.index)
         saveLocation(this.fileName, startCfi)
         const bookmark = getBookmark(this.fileName)
-        //console.log(bookmark)
+        // console.log(bookmark)
         if (bookmark) {
           if (bookmark.some(item => item.cfi === startCfi)) {
             this.setIsBookmark(true)

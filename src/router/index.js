@@ -20,6 +20,14 @@ const routes = [
 
   },
   {
+    path: '/login',
+    component: () => import('@/views/loginRegister/login.vue')
+  },
+  {
+    path: '/Register',
+    component: () => import('@/views/loginRegister/Register.vue')
+  },
+  {
  path: '/store',
     component: () => import('@/views/store/index.vue'),
     redirect: '/store/shelf',

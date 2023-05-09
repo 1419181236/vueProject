@@ -3,11 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import i18n from '@/lang'
+import Vant from 'vant'
+import 'vant/lib/index.css'
 import './assets/styles/icon.css'
 import './assets/styles/global.scss'
 // import './mock'
 import './utils/boost'
 import './utils/create-api'
+
+Vue.use(Vant)
 
 Vue.config.productionTip = false
 

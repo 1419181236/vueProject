@@ -121,7 +121,7 @@ export default {
         this.setFontFamilyVisible(false)
       }
       this.setMenuVisible(!this.menuVisible)
-      //console.log(!this.menuVisible)
+      // console.log(!this.menuVisible)
     },
     initFontSize() {
       const fontSize = getFontSize(this.fileName)

@@ -248,6 +248,7 @@
       downloadBook() {
         // 拼接opf文件路径
         const opf = `${process.env.VUE_APP_EPUB_URL}/${this.bookItem.categoryText}/${this.bookItem.fileName}/OEBPS/package.opf`
+        console.log(opf)
         this.parseBook(opf)
       },
       // 解析电子书
@@ -296,11 +297,12 @@
           }).then(response => {
             if (response.status === 200 && response.data.error_code === 0 && response.data.data) {
               const data = response.data.data
-              // console.log('aaass', response)
+               console.log('aaass', data)
               // 保存电子书详情数据
               this.bookItem = data
               // 获取封面数据
               this.cover = this.bookItem.cover
+              console.log(this.cover)
               // 获取rootFile数据
               let rootFile = data.rootFile
               if (rootFile.startsWith('/')) {

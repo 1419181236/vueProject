@@ -1,11 +1,9 @@
 <template>
   <div class="shelf-footer" v-show="isEditMode">
-    <div class="shelf-footer-tab-wrapper" v-for="item in tabs"
-    :key="item.index" @click="onTabClick(item)">
+    <div class="shelf-footer-tab-wrapper" v-for="item in tabs" :key="item.index" @click="onTabClick(item)">
       <div class="shelf-footer-tab" :class="{'is-selected': isSelected}">
-        <div class="icon-private tab-icon" v-if="item.index === 1 && !isPrivate"
-        ></div>
-        <div class="icon-private-see tab-icon" v-if="item.index === 1 && isPrivate"></div>
+<!--        <div class="icon-private tab-icon" v-if="item.index === 1 && !isPrivate"></div>-->
+<!--        <div class="icon-private-see tab-icon" v-if="item.index === 1 && isPrivate"></div>-->
         <div class="icon-download tab-icon" v-if="item.index === 2 && !isDownload"></div>
         <div class="icon-download-remove tab-icon" v-if="item.index === 2 && isDownload"></div>
         <div class="icon-move tab-icon" v-if="item.index === 3"></div>
@@ -30,11 +28,11 @@ export default {
     },
     tabs() {
       return [
-        {
-          label: this.$t('shelf.private'),
-          label2: this.$t('shelf.noPrivate'),
-          index: 1
-        },
+        // {
+        //   label: this.$t('shelf.private'),
+        //   label2: this.$t('shelf.noPrivate'),
+        //   index: 1
+        // },
         {
           label: this.$t('shelf.download'),
           label2: this.$t('shelf.delete'),
@@ -150,6 +148,7 @@ export default {
     },
     removeSelected() {
       this.shelfSelected.forEach(selected => {
+        console.log(this.shelfList.filter(book => book !== selected))
         this.setShelfList(this.shelfList.filter(book => book !== selected))
       })
       this.setShelfSelected([])

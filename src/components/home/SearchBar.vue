@@ -20,7 +20,8 @@
       <div class="search-bar-blank" :class="{'hide-title': !titleVisible}"></div>
       <div class="search-bar-input">
         <span class="icon-search icon"></span>
-        <input class="input" type="text"
+        <input class="input"
+               type="text"
                :placeholder="$t('home.hint')"
                v-model="searchText"
         @click="showHotSearch"
@@ -28,10 +29,10 @@
       </div>
     </div>
     </div>
-    <hot-search-list
-      v-show="hotSearchVisible"
-      ref="hotSearch"
-    ></hot-search-list>
+<!--    <hot-search-list-->
+<!--      v-show="hotSearchVisible"-->
+<!--      ref="hotSearch"-->
+<!--    ></hot-search-list>-->
   </div>
 </template>
 
@@ -40,6 +41,7 @@ import { storeHomeMixin } from '@/utils/mixin'
 import HotSearchList from '@/components/home/HotSearchList.vue'
 
 export default {
+  // eslint-disable-next-line vue/no-unused-components
   components: { HotSearchList },
   mixins: [storeHomeMixin],
   data() {
@@ -82,23 +84,26 @@ export default {
     },
     back() {
       if (this.offsetY > 0) {
+        console.log('111')
         this.showShadow()
       } else {
+        console.log('222')
         this.hideShadow()
       }
-      if(this.hotSearchVisible) {
+      if (this.hotSearchVisible) {
         this.hideHotSearch()
       } else {
-        this.$router.push('./store/shelf')
+        console.log('333')
+        this.$router.push('./shelf')
       }
     },
     showHotSearch() {
       this.hideTitle()
       this.hideShadow()
       this.hotSearchVisible = true
-      this.$nextTick(() => {
-        this.$refs.hotSearch.reset()
-      })
+      // this.$nextTick(() => {
+      //   this.$refs.hotSearch.reset()
+      // })
     },
     hideHotSearch() {
       this.hotSearchVisible = false

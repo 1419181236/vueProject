@@ -10,13 +10,20 @@ export function addToShelf(book) {
   saveBookShelf(shelfList)
 }
 
-export function removeFromBookShelf(book) {
-  return getBookShelf().filter(item => {
+export function removeFromBookShelf(book, bookList) {
+  if (!bookList) bookList = getBookShelf()
+  return bookList.filter(item => {
     if (item.itemList) {
-      item.itemList = removeAddFromShelf(item.itemList)
+      item.itemList = removeFromBookShelf(book, item.itemList) // 老师这里写的是removeAddFromShelf(item.itemList)
     }
     return item.fileName !== book.fileName
   })
+  // return getBookShelf().filter(item => {
+  //   if (item.itemList) {
+  //     item.itemList = removeAddFromShelf(item.itemList)
+  //   }
+  //   return item.fileName !== book.fileName
+  // })
 }
 
 export function flatBookList(bookList) {

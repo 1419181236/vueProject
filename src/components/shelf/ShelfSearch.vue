@@ -10,7 +10,8 @@
           <input class="search-input"
           type="text" :placeholder="$t('shelf.search')"
           @click="onSearchClick"
-          v-model="searchText">
+          v-model="searchText"
+          @keyup.13.exact="searchShelf">
         </div>
         <div class="icon-clear-wrapper"
              @click="clearSearchText"
@@ -85,6 +86,14 @@ export default {
     }
   },
   methods: {
+    searchShelf() {
+      this.$router.push({
+        path: '/store/list',
+        query: {
+          keyword: this.searchText
+        }
+      })
+    },
     onTabClick(id) {
       this.selectedTab = id
     },

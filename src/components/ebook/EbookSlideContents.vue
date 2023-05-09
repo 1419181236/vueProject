@@ -7,9 +7,8 @@
         </div>
         <input class="slide-contents-search-input"
                type="text"
-               v-model="searchText"
-               :placeholder="$t('book.searchHint')"
-               @keyup.enter.exact="search()"
+               v-model="searchText" :placeholder="$t('book.searchHint')"
+               @keyup.enter.exact="search"
                @click="showSearchPage">
       </div>
       <div class="slide-contents-search-cancel"
